@@ -7,5 +7,4 @@ from .modules import (
 
 from .heads import (
     SegmentationHead,
-    ClassificationHead,
 )
