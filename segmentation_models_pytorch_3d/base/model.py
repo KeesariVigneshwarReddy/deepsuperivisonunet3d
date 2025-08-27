@@ -5,7 +5,8 @@ from . import initialization as init
 class SegmentationModel(torch.nn.Module):
     def initialize(self):
         init.initialize_decoder(self.decoder)
-        init.initialize_head(self.segmentation_head)
+        for segmentation_head in self.segmentation_heads:
+            init.initialize_head(segmentation_head)
 
     def check_input_shape(self, x):
 
