@@ -87,17 +87,13 @@ class Unet(SegmentationModel):
             strides=strides,
         )
 
-        self.segmentation_head = SegmentationHead(
-            in_channels=decoder_channels[-1],
-            out_channels=classes,
-            activation=activation,
-            kernel_size=3,
-        )
-
-        if aux_params is not None:
-            self.classification_head = ClassificationHead(in_channels=self.encoder.out_channels[-1], **aux_params)
-        else:
-            self.classification_head = None
+        self.segmentation_heads = nn.ModuleList([
+            SegmentationHead(in_channels=in_channels,
+                             out_channels=classes,
+                             activation=activation,
+                             kernel_size=3)
+            for in_channels in decoder_channels
+        ])
 
         self.name = "u-{}".format(encoder_name)
         self.initialize()

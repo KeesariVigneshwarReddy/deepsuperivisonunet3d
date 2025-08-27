@@ -125,9 +125,11 @@ class UnetDecoder(nn.Module):
         head = features[0]
         skips = features[1:]
 
+        out = []
         x = self.center(head)
         for i, decoder_block in enumerate(self.blocks):
             skip = skips[i] if i < len(skips) else None
             x = decoder_block(x, skip)
+            out.append(x)
 
-        return x
+        return out

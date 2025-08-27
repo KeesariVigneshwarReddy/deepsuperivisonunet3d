@@ -48,28 +48,10 @@ class SegmentationModel(torch.nn.Module):
         features = self.encoder(x)
         decoder_output = self.decoder(*features)
 
-        masks = self.segmentation_head(decoder_output)
+        out = list()
+        
+        for i, item in enumerate(decoder_output):
+            mask = self.segmentation_heads[i](item)
+            out.append(mask)
 
-        if self.classification_head is not None:
-            labels = self.classification_head(features[-1])
-            return masks, labels
-
-        return masks
-
-    @torch.no_grad()
-    def predict(self, x):
-        """Inference method. Switch model to `eval` mode, call `.forward(x)` with `torch.no_grad()`
-
-        Args:
-            x: 4D torch tensor with shape (batch_size, channels, height, width)
-
-        Return:
-            prediction: 4D torch tensor with shape (batch_size, classes, height, width)
-
-        """
-        if self.training:
-            self.eval()
-
-        x = self.forward(x)
-
-        return x
+        return out
