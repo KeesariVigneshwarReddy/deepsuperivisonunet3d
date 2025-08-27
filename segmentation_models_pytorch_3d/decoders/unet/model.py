@@ -4,7 +4,6 @@ from segmentation_models_pytorch_3d.encoders import get_encoder
 from segmentation_models_pytorch_3d.base import (
     SegmentationModel,
     SegmentationHead,
-    ClassificationHead,
 )
 from .decoder import UnetDecoder
 
