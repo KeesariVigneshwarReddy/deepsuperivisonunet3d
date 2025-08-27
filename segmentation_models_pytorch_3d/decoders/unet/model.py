@@ -6,6 +6,7 @@ from segmentation_models_pytorch_3d.base import (
     SegmentationHead,
 )
 from .decoder import UnetDecoder
+from torch import nn
 
 
 class Unet(SegmentationModel):
