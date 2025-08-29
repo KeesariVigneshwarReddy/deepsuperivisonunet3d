@@ -64,7 +64,6 @@ class Unet(SegmentationModel):
         in_channels: int = 3,
         classes: int = 1,
         activation: Optional[Union[str, callable]] = None,
-        aux_params: Optional[dict] = None,
         strides=((2, 2, 2), (2, 2, 2), (2, 2, 2), (2, 2, 2), (2, 2, 2))
     ):
         super().__init__()

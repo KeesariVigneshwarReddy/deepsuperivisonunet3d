@@ -2,6 +2,7 @@ import zarr, pandas as pd, json, os, cv2, numpy as np, random
 from tqdm import tqdm
 from torch.utils.data import Dataset
 import matplotlib.pyplot as plt
+import torch
 
 class CustomDataset(Dataset):
     
@@ -56,6 +57,8 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         image, mask = self.images_masks[idx // self.multiplier]
         image, mask = self.augment(image, mask)
+        image = torch.from_numpy(image.copy()).float()
+        mask  = torch.from_numpy(mask.copy()).long()
         return image, mask
         
     def create_mask(self, coordinates):
