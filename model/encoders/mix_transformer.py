@@ -584,7 +584,7 @@ class MixVisionTransformerEncoder(MixVisionTransformer, EncoderMixin):
         return [x, dummy] + self.forward_features(x)[: self._depth - 1]
 
     def load_state_dict(self, state_dict):
-        from segmentation_models_pytorch_3d.utils.convert_weights import convert_2d_weights_to_3d
+        from model.utils.convert_weights import convert_2d_weights_to_3d
         state_dict.pop("head.weight", None)
         state_dict.pop("head.bias", None)
         state_dict = convert_2d_weights_to_3d(state_dict)

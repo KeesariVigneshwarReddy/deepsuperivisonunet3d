@@ -285,7 +285,7 @@ class DenseNetEncoder(DenseNet, EncoderMixin):
         return features
 
     def load_state_dict(self, state_dict):
-        from segmentation_models_pytorch_3d.utils.convert_weights import convert_2d_weights_to_3d
+        from model.utils.convert_weights import convert_2d_weights_to_3d
 
         pattern = re.compile(
             r"^(.*denselayer\d+\.(?:norm|relu|conv))\.((?:[12])\.(?:weight|bias|running_mean|running_var))$"

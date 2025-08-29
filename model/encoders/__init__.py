@@ -85,7 +85,7 @@ def get_encoder(name, in_channels=3, depth=5, weights=None, output_stride=32, st
             )
         state_dict = model_zoo.load_url(settings["url"], map_location='cpu')
         try:
-            from segmentation_models_pytorch_3d.utils.convert_weights import convert_2d_weights_to_3d
+            from model.utils.convert_weights import convert_2d_weights_to_3d
             state_dict = convert_2d_weights_to_3d(state_dict)
         except Exception as e:
             print('Can\'t convert. Exception: {}'.format(e))

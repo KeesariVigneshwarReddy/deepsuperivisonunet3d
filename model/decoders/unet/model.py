@@ -1,7 +1,7 @@
 from typing import Optional, Union, List
 
-from segmentation_models_pytorch_3d.encoders import get_encoder
-from segmentation_models_pytorch_3d.base import (
+from model.encoders import get_encoder
+from model.base import (
     SegmentationModel,
     SegmentationHead,
 )

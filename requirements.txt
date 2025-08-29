@@ -7,3 +7,4 @@ timm-3d==1.0.1
 tqdm
 pillow
 six
+zarr
